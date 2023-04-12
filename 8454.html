@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<style>
+		.led-box {
+		  height: 30px;
+		  width: 25%;
+		  padding-top:100px;
+		  padding-left:110px;
+		}
+
+		.led-red {
+		  
+		  width: 24px;
+		  height: 24px;
+		  background-color: #F00;
+		  border-radius: 50%;
+		  padding-left:150px;
+		  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+		  -webkit-animation: blinkRed 0.5s infinite;
+		  -moz-animation: blinkRed 0.5s infinite;
+		  -ms-animation: blinkRed 0.5s infinite;
+		  -o-animation: blinkRed 0.5s infinite;
+		  animation: blinkRed 0.5s infinite;
+		}
+
+		@-webkit-keyframes blinkRed {
+			from { background-color: #F00; }
+			50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+			to { background-color: #F00; }
+		}
+		@-moz-keyframes blinkRed {
+			from { background-color: #F00; }
+			50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+			to { background-color: #F00; }
+		}
+		@-ms-keyframes blinkRed {
+			from { background-color: #F00; }
+			50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+			to { background-color: #F00; }
+		}
+		@-o-keyframes blinkRed {
+			from { background-color: #F00; }
+			50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+			to { background-color: #F00; }
+		}
+		@keyframes blinkRed {
+			from { background-color: #F00; }
+			50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
+			to { background-color: #F00; }
+		}
+		body {
+			font-family: sans-serif;
+			text-align: center;
+			 background-image: url('keypad.png');
+			 width:100%;
+			
+		}
+		
+		.container {
+			display: inline-block;
+			padding-right:30px;
+			padding-top:180px;
+		}
+		
+		.display {
+			background-color: #eee;
+			border: 1px solid #ccc;
+			display: inline-block;
+			font-size: 24px;
+			height: 30px;
+			padding: 5px;
+			text-align: right;
+			width: 150px;
+		}
+		
+		.button {
+			background-color: #ccc;
+			border: none;
+			color: #000;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 24px;
+			height: 50px;
+			margin: 5px;
+			text-align: center;
+			width: 50px;
+		}
+		
+		.button:hover {
+			background-color: #aaa;
+			color: #fff;
+		}
+		
+		#submit-button, #clear-button {
+			background-color: #4CAF50;
+			color: #fff;
+			height: 50px;
+			margin: 5px;
+			width: 50px;
+			text-align: center;
+		}
+		
+		#submit-button:hover, #clear-button:hover {
+			background-color: #3e8e41;
+		}
+		
+		.dialogue-container {
+		  position: fixed;
+		  bottom: 0;
+		  right: 0;
+		  padding-top:100px;
+		  height: 100%;
+		  width: 100%;
+		  display: flex;
+		  flex-direction: row;
+		}
+
+		.dialogue-panel {
+		  height: 100%;
+		  width: 20%;
+		  padding: 10px;
+		 
+		  color: #fff;
+		  font-size: 16px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+
+		.left-panel {
+		  background-color:rgba(34, 12, 64, 0.5);
+		 
+		}
+
+		.right-panel {
+		  background-color: rgba(34, 12, 64, 0.5);
+		  
+		}
+
+		.dialogue-box {
+		  position: relative;
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: center;
+		  align-items: center;
+		  height: 20%;
+		  width: 1200px;
+		  background-color: #fff;
+		  border: 2px solid #000;
+		  border-radius: 10px;
+		  padding: 20px;
+		  box-sizing: border-box;
+		  
+		}
+
+		#dialogue-text {
+		  
+		  font-size: 20px;
+		}
+
+		#next-button {
+		  font-size: 16px;
+		  padding: 10px 20px;
+		  border-radius: 5px;
+		  background-color: #000;
+		  color: #fff;
+		  border: none;
+		  cursor: pointer;
+		}
+
+		#image-container {
+			padding-top:150px;
+		  height: 50%;
+		  width: 100%;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		}
+
+		.dialogue-image {
+			
+		  height: 80%;
+		  max-width: 100%;
+		  object-fit: contain;
+		}
+	</style>
+</head>
+<body>
+	<h1>Enter Your Four Digit Password</h1>
+	<div></div>
+
+	<div class="dialogue-container">
+    <div class="dialogue-panel left-panel">
+	<div>
+	<p>Explaination:</p>
+	<p>Side-channel timing attacks are attacks that exploit variations in the execution time of a cryptographic algorithm to extract secret information.</p>
+	<p>While this keypad has 10x10x10x10 cominations, we will exploit this vulnerability to get only 10+10+10+10 max combinations. As shown in the diagram the keypad checks one by one for the correct digit hence the more time it take the more digits are correct</p>
+	
+      <img src="ap.gif" >
+    </div>
+    </div>
+	
+	<div>
+	<div class="dialogue-box">
+      
+	 <div id="image-container">
+        <img class="dialogue-image" id="dialogue-image" src="four.png" alt="Placeholder image">
+      </div>
+      <p id="dialogue-text">Captain: Soldier, we have intel that this russian world war bunker contain and EMP weapon. We just recently located this bunker and we are sure that you can by pass all security systems and trigger the weapon in time. The AI has already been alerted of your presence so procced with caution.  </p>
+	  
+      <button id="next-button">Next</button>
+		
+		<div class="led-box">
+		<div class="led-red"></div>
+			
+		</div>
+	
+	</div>
+	
+	
+		<div class="container">
+		<div class="display" id="display"></div>
+		<div>
+			<button class="button" onclick="onButtonClick('1')">1</button>
+			<button class="button" onclick="onButtonClick('2')">2</button>
+			<button class="button" onclick="onButtonClick('3')">3</button>
+		</div>
+		<div>
+			<button class="button" onclick="onButtonClick('4')">4</button>
+			<button class="button" onclick="onButtonClick('5')">5</button>
+			<button class="button" onclick="onButtonClick('6')">6</button>
+		</div>
+		<div>
+			<button class="button" onclick="onButtonClick('7')">7</button>
+			<button class="button" onclick="onButtonClick('8')">8</button>
+			<button class="button" onclick="onButtonClick('9')">9</button>
+		</div>
+		<div>
+			<button class="button" id="submit-button">#</button>
+			<button class="button" onclick="onButtonClick('0')">0</button>
+			<button class="button" id="clear-button"><</button>
+		</div>
+		</div>
+	</div>
+    <div class="dialogue-panel right-panel">
+		<div>
+		<p>Instructions:</p>
+		<ol>
+			<li>Test a four-digit number [0000,1111,2222...8888,9999], where all four digits are the same. Only 10 numbers need to be checked for the first digit. After submitting the number, record the time it takes for the comparison to be made. The longer the delay, the more correct digits the number has.</li>
+			<li>Once you have determined the highest delay, keep the first digit constant and change the remaining three digits, while keeping them the same. For example, if you got 9 as the first digit, you would test all numbers [9000,9111,9222...9888,999]</li>
+			<li>Repeat the process for the remaining digits. Keep the first two digits constant and change the last two digits one at a time, then keep the first three digits constant and change the last digit. With each repetition, your delay should increase.</li>
+		</ol>
+		</div>
+
+	  
+
+		
+    </div>
+  </div>
+
+	<script>
+		var password = [];
+		var startTime;
+		var endTime;
+		var display = document.getElementById("display");
+		var randomNumber = Math.floor(Math.random() * 9000) + 1000;
+		var storedPassword = randomNumber.toString();
+		
+		function onButtonClick(buttonValue) {
+			if (password.length < 4) {
+				password.push(buttonValue);
+				updateDisplay();
+			}
+		}
+
+		function updateDisplay() {
+			var displayText = "";
+			for (var i = 0; i < password.length; i++) {
+				displayText += "*";
+			}
+			display.innerHTML = displayText;
+		}
+
+		function checkPassword() {
+			var enteredPassword = password.join("");
+			
+
+			if (enteredPassword === storedPassword) {
+				endTime = new Date();
+				var timeDiff = 3000
+			showResult("success", timeDiff);
+		} else {
+			var wrongDigitIndex = getWrongDigitIndex(enteredPassword, storedPassword);
+			var timeAdjustment = (wrongDigitIndex + 1) * 500;
+			setTimeout(function() {
+				endTime = new Date();
+				var timeDiff = endTime - startTime;
+				showResult("wrong", timeDiff);
+			}, timeAdjustment);
+		}
+
+		password = [];
+		updateDisplay();
+	}
+
+	function getWrongDigitIndex(enteredPassword, storedPassword) {
+		for (var i = 0; i < enteredPassword.length; i++) {
+			if (enteredPassword.charAt(i) !== storedPassword.charAt(i)) {
+				return i;
+			}
+		}
+		return enteredPassword.length - 1;
+	}
+
+	function showResult(result, timeDiff) {
+		if (result === "success") {
+			alert("Access granted! Your password is correct. It took " + timeDiff + " ms to respond. The Flag is 23345454325. Save it in a notepad to submit in the end of the game.");
+		} else {
+			alert("Access denied! Your password is incorrect. It took " + timeDiff + " ms to respond.");
+		}
+	}
+
+	document.getElementById("submit-button").addEventListener("click", function() {
+		if (password.length === 4) {
+			startTime = new Date();
+			checkPassword();
+		}
+	});
+
+	document.getElementById("clear-button").addEventListener("click", function() {
+		password = [];
+		updateDisplay();
+	});
+	const dialogueText = document.getElementById("dialogue-text");
+    const dialogueImage = document.getElementById("dialogue-image");
+    const nextButton = document.getElementById("next-button");
+
+    const texts = [ "Soldier: Copy that, Captain. I'm on it.", "Evil AI: You're wasting your time, soldier. That keypad is impossible to crack. You might as well give up now."]; // add more texts as needed
+    const images = ["one.jpg", "four.png", "three.jpg"]; // add more images as needed
+    let index = 0;
+
+    nextButton.addEventListener("click", () => {
+      if (index < 2){
+		dialogueText.innerText = texts[index];
+      dialogueImage.src = images[index];
+     
+	  index = (index + 1) ;
+		}
+    });
+	
+</script>
+</body>
+</html>
