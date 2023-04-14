@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>You are victorious</title>
+	<style>
+		body {
+		    font-family: Arial, sans-serif;
+		    font-size: 16px;
+		    color: #fff;
+		    margin: 0;
+		    padding: 0;
+		    background-image: url("start.webp");
+		    background-repeat: no-repeat;
+		    background-size: cover;
+		}
+
+		.black-container {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background-color: #000;
+		    z-index: 3;
+		    opacity: 1;
+		    transition: opacity 1s ease-in-out;
+		}
+
+		.fade-out {
+		    opacity: 0;
+		}
+
+		.dialog-box {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    background-color: rgba(0,0,0,0.5);
+		    padding: 50px;
+		    border-radius: 10px;
+		    z-index: 2;
+		}
+
+		.input-field {
+		    display: block;
+		    margin-bottom: 10px;
+		    width: 100%;
+		    padding: 10px;
+		    font-size: 16px;
+		    border-radius: 5px;
+		    border: none;
+		}
+
+		.input-field:focus {
+		    outline: none;
+		}
+
+		.submit-button {
+		    background-color: #fff;
+		    color: #000;
+		    border: none;
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    border-radius: 5px;
+		    cursor: pointer;
+		}
+
+		 .submit-button:hover {
+		    background-color: #000;
+		    color: #fff;
+		}
+
+		.title {
+		    text-align: center;
+		    font-size: 36px;
+		    margin-bottom: 20px;
+		    font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="black-container"></div>
+	<div class="dialog-box">
+		<div class="title">You are victorious</div>
+		<form name="contact" method="POST" data-netlify="true">
+			<label for="name">Name:</label>
+			<input type="text" name="name" id="name" class="input-field" required>
+
+			<label for="email">Email:</label>
+			<input type="email" name="email" id="email" class="input-field" required>
+
+			<label for="flag1">Flag 1:</label>
+			<input type="text" name="flag1" id="flag1" class="input-field" required>
+
+			<label for="flag2">Flag 2:</label>
+			<input type="text" name="flag2" id="flag2" class="input-field" required>
+
+			<label for="flag3">Flag 3:</label>
+			<input type="text" name="flag3" id="flag3" class="input-field" required>
+
+			<input type="submit" value="Submit" class="submit-button">
+		</form>
+	</div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			setTimeout(function() {
+			  document.querySelector('.black-container').classList.add('fade-out');
+			}, 2000);});
+</script>
+</body>
+</html>
