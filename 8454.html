@@ -147,7 +147,7 @@
 		  justify-content: center;
 		  align-items: center;
 		  height: 10%;
-		  
+		 
 		  background-color: #fff;
 		  border: 2px solid #000;
 		  border-radius: 10px;
@@ -208,7 +208,7 @@
 	 <div id="image-container">
         <img class="dialogue-image" id="dialogue-image" src="four.png" alt="Placeholder image">
       </div>
-      <p id="dialogue-text">Captain: Soldier, we have intel that this russian world war bunker contain and EMP weapon. We just recently located this bunker and we are sure that you can bypass all security systems and trigger the weapon in time. The AI has already been alerted of your presence so proceed with caution.  </p>
+      <p id="dialogue-text">Captain: Soldier, we have intel that this russian world war bunker contain and EMP weapon. We just recently located this bunker and we are sure that you can by pass all security systems and trigger the weapon in time. The AI has already been alerted of your presence so procced with caution.  </p>
 	  
       <button id="next-button">Next</button>
 		
@@ -319,6 +319,7 @@
 	function showResult(result, timeDiff) {
 		if (result === "success") {
 			alert("Access granted! Your password is correct. It took " + timeDiff + " ms to respond. The Flag is 23345454325. Save it in a notepad to submit in the end of the game.");
+			window.location.href = "7543.html";
 		} else {
 			alert("Access denied! Your password is incorrect. It took " + timeDiff + " ms to respond.");
 		}
@@ -339,7 +340,7 @@
     const dialogueImage = document.getElementById("dialogue-image");
     const nextButton = document.getElementById("next-button");
 
-    const texts = [ "Soldier: Copy that, Captain. I'm at the bunker and have reach the first check point. Working on the keypad right now. No sign of the AI yet.", "Evil AI: You're wasting your time, soldier. That keypad is impossible to crack. You might as well give up now."]; // add more texts as needed
+    const texts = [ "Soldier: Copy that, Captain. I'm on it.", "Evil AI: You're wasting your time, soldier. That keypad is impossible to crack. You might as well give up now."]; // add more texts as needed
     const images = ["one.jpg", "four.png", "three.jpg"]; // add more images as needed
     let index = 0;
 
